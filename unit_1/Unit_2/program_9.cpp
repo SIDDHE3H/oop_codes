@@ -7,13 +7,7 @@ protected:
     std::string name;
 
 public:
-    // Constructor with initialization list
-    explicit Person(std::string personName) 
-        : name(std::move(personName)) {}
-
-    void displayName() const {
-        std::cout << "Name: " << name << '\n';
-    }
+    explicit Person(std::string personName) : name(std::move(personName)) {}
 };
 
 class Student : public Person {
@@ -21,18 +15,17 @@ private:
     int rollNumber;
 
 public:
-    // Constructor forwarding name to base class
     Student(std::string studentName, int roll)
         : Person(std::move(studentName)), rollNumber(roll) {}
 
-    void displayStudent() const {
-        displayName();
+    void display() const {
+        std::cout << "Name: " << name << '\n';
         std::cout << "Roll Number: " << rollNumber << '\n';
     }
 };
 
 int main() {
-    Student student("Amit", 101);
-    student.displayStudent();
+    Student student("Kiran", 24);
+    student.display();
     return 0;
 }
